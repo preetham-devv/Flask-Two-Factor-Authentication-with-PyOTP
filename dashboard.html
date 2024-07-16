@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - MFA QR Code{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title">Welcome, {{ session.get("user_id", "Guest") }}</h5>
+                <a href="{{ url_for('logout') }}" class="btn btn-danger float-right">Logout</a>
+            </div>
+            <div class="card-body">
+                <h6>Interactive Dashboard</h6>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title">Total Sales</h6>
+                                <p class="card-text data-value">{{ fake_data.total_sales }}</p>
+                                <button class="btn btn-primary btn-sm update-data" data-target="total_sales">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title">Total Orders</h6>
+                                <p class="card-text data-value">{{ fake_data.total_orders }}</p>
+                                <button class="btn btn-primary btn-sm update-data" data-target="total_orders">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title">Total Customers</h6>
+                                <p class="card-text data-value">{{ fake_data.total_customers }}</p>
+                                <button class="btn btn-primary btn-sm update-data" data-target="total_customers">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title">Total Products</h6>
+                                <p class="card-text data-value">{{ fake_data.total_products }}</p>
+                                <button class="btn btn-primary btn-sm update-data" data-target="total_products">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $(".update-data").click(function() {
+            var target = $(this).data("target");
+            var newValue = Math.floor(Math.random() * 1000);
+            $(".data-value", $(this).closest(".card")).text(newValue);
+        });
+    });
+</script>
+{% endblock %}

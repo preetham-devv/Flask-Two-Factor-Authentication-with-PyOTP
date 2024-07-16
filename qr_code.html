@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}QR Code - MFA QR Code{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title">Scan QR Code using Google Authenticator App</h5>
+            </div>
+            <div class="card-body text-center">
+                <img src="data:image/png;base64,{{ img_str }}" alt="QR Code" class="img-fluid">
+                <form action="/authenticate" method="post">
+                    <input type="hidden" name="user_id" value="{{ user_id }}">
+                    <div class="form-group mt-3">
+                        <label for="code">Enter Code from Authenticator App:</label>
+                        <input type="text" id="code" name="code" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
